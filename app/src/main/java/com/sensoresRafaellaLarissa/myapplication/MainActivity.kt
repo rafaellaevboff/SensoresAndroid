@@ -1,5 +1,6 @@
 package com.sensoresRafaellaLarissa.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -8,8 +9,11 @@ import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.sensoresRafaellaLarissa.myapplication.databinding.ActivityMainBinding
+import java.math.RoundingMode
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityMainBinding
 
     private lateinit var acelerometro : Sensor
     private lateinit var pressaoAr : Sensor
@@ -17,10 +21,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var listener : SensorEventListener
     private var valoresGravidade = FloatArray(3)
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //Lista todos os sensores disponíveis no dispositivo
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -35,23 +39,29 @@ class MainActivity : AppCompatActivity() {
 
         //criar SensorEventListener
         listener = object : SensorEventListener{
+            @SuppressLint("SetTextI18n")
             override fun onSensorChanged(event: SensorEvent?) {
                 when(event?.sensor?.type){
+                    Sensor.TYPE_PRESSURE-> {
+                        val pressao = (event.values[0])/10
+                        Log.i("SENSORES", "Pressão = $pressao hPa")
+                        binding.valorPressao.text = "$pressao hpa"
+                    }
                     Sensor.TYPE_ACCELEROMETER-> {
                         valoresGravidade = event.values.clone()
                         val x = event.values[0]
                         val y = event.values[1]
                         val z = event.values[2]
+                        val gravidade = String.format("%.2f", y)
                         Log.i("SENSORES", "X = $x m/s^2\nY = $y m/s^2\nZ = $z m/s^2")
-                    }
-                    Sensor.TYPE_PRESSURE-> {
-                        val pressao = event.values[0]
-                        Log.i("SENSORES", "Pressão = $pressao hPa")
+                        binding.valorGravidade.text = "$gravidade m/s^2"
                     }
                 }
             }
             override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
         }
+
+        binding.valorUmidade.text = ""
     }
 
     override fun onResume(){
