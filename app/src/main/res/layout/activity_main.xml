@@ -8,6 +8,36 @@
     android:backgroundTint="#0D0C12"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imagemCapa"
+        android:layout_width="411dp"
+        android:layout_height="221dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/earth" />
+
+    <ImageView
+        android:id="@+id/barometro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/terraSetas"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/terraSetas"
+        app:srcCompat="@drawable/barometro" />
+
+    <TextView
+        android:id="@+id/pressao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/pressao"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/gravidade"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barometro" />
+
     <TextView
         android:id="@+id/valorPressao"
         android:layout_width="wrap_content"
@@ -17,19 +47,63 @@
         app:layout_constraintEnd_toStartOf="@+id/valorGravidade"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/pressao" />
+
+    <ImageView
+        android:id="@+id/terraSetas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toStartOf="@+id/gotas"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/barometro"
+        app:layout_constraintTop_toBottomOf="@+id/imagemCapa"
+        app:srcCompat="@drawable/gravidade" />
 
     <TextView
-        android:id="@+id/pressao"
+        android:id="@+id/gravidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Gravidade"
+        android:text="@string/gravidade"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/umidade"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/pressao"
         app:layout_constraintTop_toBottomOf="@+id/terraSetas" />
+
+    <TextView
+        android:id="@+id/valorGravidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/valorUmidade"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/valorPressao"
+        app:layout_constraintTop_toBottomOf="@+id/gravidade" />
+
+    <ImageView
+        android:id="@+id/gotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/terraSetas"
+        app:layout_constraintTop_toTopOf="@+id/terraSetas"
+        app:srcCompat="@drawable/umidade" />
+
+    <TextView
+        android:id="@+id/umidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Umidade"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/gravidade"
+        app:layout_constraintTop_toBottomOf="@+id/gotas" />
 
     <TextView
         android:id="@+id/valorUmidade"
@@ -42,79 +116,8 @@
         app:layout_constraintStart_toEndOf="@+id/valorGravidade"
         app:layout_constraintTop_toBottomOf="@+id/umidade" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Pressão"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/pressao"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barometro" />
 
-    <TextView
-        android:id="@+id/umidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Umidade"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/pressao"
-        app:layout_constraintTop_toBottomOf="@+id/gotas" />
 
-    <TextView
-        android:id="@+id/valorGravidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/valorUmidade"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/valorPressao"
-        app:layout_constraintTop_toBottomOf="@+id/pressao" />
-
-    <ImageView
-        android:id="@+id/barometro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/terraSetas"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/terraSetas"
-        app:srcCompat="@drawable/barometro" />
-
-    <ImageView
-        android:id="@+id/terraSetas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toStartOf="@+id/gotas"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/barometro"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:srcCompat="@drawable/gravidade" />
-
-    <ImageView
-        android:id="@+id/gotas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/terraSetas"
-        app:layout_constraintTop_toTopOf="@+id/terraSetas"
-        app:srcCompat="@drawable/umidade" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="411dp"
-        android:layout_height="221dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/earth" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
