@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    android:backgroundTint="#0D0C12"
+    android:backgroundTint="#000000"
     tools:context=".MainActivity">
 
     <ImageView
@@ -98,7 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Umidade"
+        android:text="@string/umidade"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -115,9 +115,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/valorGravidade"
         app:layout_constraintTop_toBottomOf="@+id/umidade" />
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,5 +2,5 @@
     <string name="app_name">Infos da Terra</string>
     <string name="gravidade">Gravidade</string>
     <string name="pressao">Pressão do ar</string>
-    <string name="Gravidade"></string>
+    <string name="umidade">Umidade</string>
 </resources>
