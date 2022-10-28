@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var acelerometro: Sensor
     private var valoresGravidade = FloatArray(3)
     private lateinit var pressaoAr: Sensor
+    private lateinit var umidadeAr: Sensor
 
     //CRIA UMA INSTÂNCIA DO SERVIÇO DO SENSOR (oferece vários métodos para acessar e listar sensores, registrar e cancelar o registro de listeners de eventos do sensor e coletar informações de orientação)
     private lateinit var sensorManager: SensorManager
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         //sensor específico
         acelerometro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         pressaoAr = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
+        umidadeAr = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY)
 
         //criar SensorEventListener
         listener = object : SensorEventListener {
@@ -60,6 +62,11 @@ class MainActivity : AppCompatActivity() {
                         Log.i("SENSORES", "X = $x m/s^2\nY = $y m/s^2\nZ = $z m/s^2")
                         binding.valorGravidade.text = "$gravidade m/s^2"
                     }
+                    Sensor.TYPE_RELATIVE_HUMIDITY -> {
+                        val umidade = event.values[0]
+                        Log.i("SENSORES", "Umidade = $umidade %")
+                        binding.umidade.text = "$umidade %"
+                    }
                 }
             }
             override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
@@ -70,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         sensorManager.registerListener(listener, acelerometro, SensorManager.SENSOR_DELAY_NORMAL)
         sensorManager.registerListener(listener, pressaoAr, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(listener,umidadeAr,SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     override fun onPause() {
